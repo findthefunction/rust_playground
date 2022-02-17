@@ -1,11 +1,31 @@
 use std::collections::HashMap
 
-struct Todo {
-    // use rust built in HashMap to store key = val pairs
-    map: HashMap<String, bool>,
-}
 
 impl Todo {
+    fn main() {
+    
+        let action = std::env::args().nth(1).expect("Please specify an action");
+        let item = std::env::args().nth(2).expect("Please specify and item");
+    
+        let mut todo = Todo {
+            map: HashMap::new(),
+        };
+        if action == "add" {
+            todo.insert(item);
+            match todo.insert(item);
+                Ok(_) => println!("todo saved"),
+                Err(why) => println!("An error occured: {}", why),
+                
+        }
+    
+    println!("{:?}, {:?}", action, item);
+    }
+    
+    struct Todo {
+        // use rust built in HashMap to store key = val pairs
+        map: HashMap<String, bool>,
+    }
+
     fn insert(&mut self, key: String) {
         // insert a new item into our map.
         // we pass true as value
@@ -20,25 +40,5 @@ impl Todo {
         }
         std::fs::write("db.txt", content)
     }
-}
-
-
-fn main() {
-    
-    let action = std::env::args().nth(1).expect("Please specify an action");
-    let item = std::env::args().nth(2).expect("Please specify and item");
-
-    let mut todo = Todo {
-        map: HashMap::new(),
-    };
-    if action == "add" {
-        todo.insert(item);
-        match todo.insert(item);
-            Ok(_) => println!("todo saved"),
-            Err(why) => println!("An error occured: {}", why),
-            
-    }
-
-println!("{:?}, {:?}", action, item);
 }
 
